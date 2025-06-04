@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Generar Certificado - ConfiAbleEmpress</title>
+  <link rel="stylesheet" href="assets/estilos.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="assets/logo.png" alt="Logo ConfiAbleEmpress" />
+      <h1>ConfiAbleEmpress</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="TÉRMINOS DE USO Y POLÍTICA.html">Términos</a></li>
+        <li><a href="politica-privacidad.html">Privacidad</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Generador de Certificados</h2>
+      <p>Ingresa los datos para crear un certificado único.</p>
+
+      <form id="cert-form">
+        <label for="nombreEmpresa">Nombre de la Empresa o Servicio:</label>
+        <input type="text" id="nombreEmpresa" name="nombreEmpresa" required />
+
+        <label for="representante">Nombre del Representante:</label>
+        <input type="text" id="representante" name="representante" required />
+
+        <label for="firmaCliente">Firma de la Empresa (Nombre del firmante):</label>
+        <input type="text" id="firmaCliente" name="firmaCliente" required />
+
+        <label for="opcion">Opción de Certificado:</label>
+        <select id="opcion" name="opcion" required>
+          <option value="">Seleccionar</option>
+          <option value="A">Opción A - 3 estrellas (9 meses)</option>
+          <option value="B">Opción B - 2 estrellas (5 meses)</option>
+          <option value="C">Opción C - 1 estrella (2 meses)</option>
+        </select>
+
+        <label for="codigoPago">Código de Confirmación de Pago:</label>
+        <input type="text" id="codigoPago" name="codigoPago" required />
+
+        <button type="submit" class="boton-principal">Generar Certificado</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ConfiAbleEmpress. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/generate.js"></script>
+</body>
+</html>

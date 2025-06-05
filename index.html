@@ -1,56 +1,123 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ConfiAbleEmpress - Validación de Empresas</title>
-  <link rel="stylesheet" href="./assets/estilos.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConfiAbleEmpress - Validación Visual para Negocios</title>
+    <meta name="description" content="ConfiAbleEmpress es una plataforma de validación visual de negocios que destaca empresas comprometidas con la transparencia y la confianza.">
+    <!-- Content Security Policy (CSP) para mejorar la seguridad -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https://placehold.co;">
+    
+    <!-- Enlace a la hoja de estilos global (limpia) -->
+    <link rel="stylesheet" href="assets/estiloglobales.css">
+    <!-- Enlace a la hoja de estilos específica de la página de inicio -->
+    <link rel="stylesheet" href="assets/homeindex.css">
+    <!-- Icono de la página (favicon) -->
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <!-- Enlace a Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="./assets/logo.png" alt="ConfiAbleEmpress Logo">
-      <h1>ConfiAbleEmpress</h1>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="form.html">Generar Certificado</a></li>
-        <li><a href="TÉRMINOS DE USO Y POLÍTICA.html">Términos</a></li>
-        <li><a href="politica-privacidad.html">Privacidad</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="Logo de ConfiAbleEmpress" class="logo-img">
+                <h1>ConfiAbleEmpress</h1>
+            </a>
+            <nav>
+                <!-- Aquí se podría añadir un menú de navegación si fuera necesario -->
+            </nav>
+        </div>
+    </header>
 
-  <main>
-    <section class="bienvenida">
-      <h2>Validación Visual de Empresas Confiables</h2>
-      <p>
-        ConfiAbleEmpress te permite registrar, validar y mostrar públicamente la confiabilidad de tu empresa o servicio a través de certificados visuales, verificables y con estilo profesional. Ideal para empresas emergentes o servicios nuevos que buscan ganar la confianza del público.
-      </p>
-      <a class="boton-principal" href="form.html">Generar Certificado</a>
-    </section>
+    <main>
+        <section class="hero-section">
+            <div class="container hero-content">
+                <h2 class="hero-title animate-fade-in">ConfiAbleEmpress</h2>
+                <p class="hero-subtitle animate-slide-up delay-1">Tu Sello de Verificación, Confianza y Transparencia</p>
+                <p class="short-description animate-slide-up delay-2">
+                    ConfiAbleEmpress es una plataforma de validación visual de negocios que destaca empresas comprometidas con la transparencia y la confianza, ofreciéndoles mayor visibilidad y credibilidad ante sus clientes.
+                </p>
+                <!-- El botón "¡Genera tu Certificado!" ha sido eliminado de esta página.
+                     El acceso al generador ahora se realiza directamente a través de admin-generador.html o form.html. -->
+            </div>
+        </section>
 
-    <section class="ventajas">
-      <h3>¿Qué incluye tu certificado?</h3>
-      <ul>
-        <li>Firma y sello digital oficial</li>
-        <li>QR para validación en línea</li>
-        <li>Calificación por estrellas según nivel</li>
-        <li>Validez por meses dependiendo el plan</li>
-        <li>Comentarios positivos simulados y barra de confianza visual</li>
-      </ul>
-    </section>
-  </main>
+        <section class="content-section how-it-works-section">
+            <div class="container">
+                <h2 class="section-title animate-fade-in">¿Cómo Funciona?</h2>
+                <p class="animate-slide-up delay-3">
+                    ConfiAbleEmpress es un directorio en línea que proporciona validación visual para negocios y servicios. A través de un sello de verificación y un certificado, destacamos a las empresas que han cumplido con ciertos criterios, brindándoles una mayor visibilidad y ayudando a generar confianza entre sus potenciales clientes.
+                </p>
+                <div class="features-grid">
+                    <div class="feature-card animate-scale-in delay-4">
+                        <div class="icon-wrapper"><i class="fas fa-check-circle"></i></div>
+                        <h3>Validación Visual</h3>
+                        <p>Obtén un sello de verificación y un certificado digital que demuestran tu compromiso con la transparencia y la confiabilidad.</p>
+                    </div>
+                    <div class="feature-card animate-scale-in delay-5">
+                        <div class="icon-wrapper"><i class="fas fa-eye"></i></div>
+                        <h3>Mayor Visibilidad</h3>
+                        <p>Aparece en nuestro directorio y llega a clientes que buscan activamente negocios confiables y verificados.</p>
+                    </div>
+                    <div class="feature-card animate-scale-in delay-6">
+                        <div class="icon-wrapper"><i class="fas fa-handshake"></i></div>
+                        <h3>Genera Confianza</h3>
+                        <p>Construye credibilidad instantánea con tus clientes al mostrarles que tu negocio ha sido validado por una plataforma externa.</p>
+                    </div>
+                    <div class="feature-card animate-scale-in delay-7">
+                        <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
+                        <h3>Marketing Efectivo</h3>
+                        <p>Nuestro servicio está diseñado como una herramienta de publicidad y marketing para dar a negocios nuevos o "no conocidos" una ventaja inicial, permitiéndoles mostrar una imagen de confianza desde el primer día.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <footer>
-    <p>&copy; 2025 ConfiAbleEmpress. Todos los derechos reservados.</p>
-    <p>
-      Este sitio no se hace responsable por conflictos entre usuarios y empresas registradas.
-      Más información en nuestros
-      <a href="TÉRMINOS DE USO Y POLÍTICA.html">Términos</a> y
-      <a href="politica-privacidad.html">Política de Privacidad</a>.
-    </p>
-  </footer>
+        <section class="content-section trust-elements-section">
+            <div class="container">
+                <h2 class="section-title animate-fade-in delay-8">Elementos Clave de Nuestra Confianza</h2>
+                <div class="trust-grid">
+                    <div class="trust-item animate-fade-in delay-9">
+                        <i class="fas fa-award"></i>
+                        <h3>Certificación Rigurosa</h3>
+                        <p>Nuestros criterios de validación aseguran que solo las empresas más comprometidas obtengan nuestro sello.</p>
+                    </div>
+                    <div class="trust-item animate-fade-in delay-10">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Seguridad y Transparencia</h3>
+                        <p>Promovemos la transparencia y la seguridad en cada negocio listado, para tu tranquilidad.</p>
+                    </div>
+                    <div class="trust-item animate-fade-in delay-11">
+                        <i class="fas fa-users"></i>
+                        <h3>Comunidad Confiable</h3>
+                        <p>Conectamos a usuarios con negocios verificados, fomentando un ecosistema de confianza mutua.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="TÉRMINOS DE USO Y POLÍTICA.html">Términos de Uso y Política de Validación</a>
+                <a href="politica-privacidad.html">Política de Privacidad</a>
+                <a href="politica-de-cookies.html">Política de Cookies</a>
+                <a href="seguridad-total.html">Seguridad Total</a>
+            </div>
+            <div class="footer-contact">
+                <p>Contacto: <a href="mailto:chinooficial262@gmail.com">chinooficial262@gmail.com</a></p>
+                <div class="legal-notice-container">
+                    <p class="legal-notice">
+                        Aviso Legal: ConfiAbleEmpress ofrece un servicio de validación visual con fines de marketing. No nos hacemos responsables por los servicios prestados por las empresas listadas. Se recomienda a los usuarios ejercer su propio juicio.
+                    </p>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2025 ConfiAbleEmpress. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Certificados - ConfiAbleEmpress</title>
+    <title>Acceso al Generador de Certificados - ConfiAbleEmpress</title>
     <!-- Content Security Policy (CSP) para mejorar la seguridad -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https://placehold.co;">
     
-    <!-- Enlace a la hoja de estilos global -->
+    <!-- Enlace a la hoja de estilos global (limpia) -->
     <link rel="stylesheet" href="assets/estiloglobales.css">
-    <!-- Enlace a la hoja de estilos específica del formulario -->
-    <link rel="stylesheet" href="assets/form.css">
+    <!-- Enlace a la hoja de estilos específica de la página de administrador -->
+    <link rel="stylesheet" href="assets/admin.css">
     <!-- Icono de la página (favicon) -->
     <link rel="icon" href="assets/logo.png" type="image/png">
-    <!-- Enlace a Font Awesome para iconos (por ejemplo, para el spinner de carga) -->
+    <!-- Enlace a Font Awesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
         <div class="header-content">
-            <!-- Logo y nombre de la empresa en el encabezado -->
             <a href="index.html" class="logo">
                 <img src="assets/logo.png" alt="Logo de ConfiAbleEmpress" class="logo-img">
                 <h1>ConfiAbleEmpress</h1>
@@ -31,7 +30,17 @@
     </header>
 
     <main>
-        <section class="form-section content-section">
+        <!-- Capa de protección con contraseña -->
+        <div id="passwordOverlay" class="password-overlay">
+            <h2>Acceso Restringido</h2>
+            <p>Por favor, introduce la contraseña para acceder al generador de certificados.</p>
+            <input type="password" id="passwordInput" placeholder="Contraseña">
+            <button id="accessButton">Acceder</button>
+            <p id="errorMessage" class="error-message">Contraseña incorrecta. Inténtalo de nuevo.</p>
+        </div>
+
+        <!-- Contenido del generador de certificados (oculto por defecto) -->
+        <section class="form-section content-section generator-content" id="generatorContent">
             <div class="container">
                 <h2 class="section-title">Generador de Certificados de Validación</h2>
                 <p>Ingresa los datos de la empresa para generar su certificado de confiabilidad.</p>
@@ -75,7 +84,7 @@
                 <!-- Contenedor para mensajes al usuario (éxito, error, info) -->
                 <div id="messageBox" class="message-box" style="display: none;">
                     <p id="messageText"></p>
-                    <button class="close-button" onclick="document.getElementById('messageBox').style.display='none'">Cerrar</button>
+                    <button id="closeMessageBoxButton" class="close-button">Cerrar</button>
                 </div>
 
                 <!-- Indicador de carga (spinner animado) -->
@@ -88,9 +97,15 @@
                 <div id="generatedContent" style="display: none;">
                     <h3>Certificado Generado con Éxito:</h3>
                     <div class="generated-links">
-                        <p>Puedes <a id="downloadPdfLink" href="#" download="certificado.pdf" class="download-link"><i class="fas fa-file-pdf"></i> Descargar PDF</a></p>
-                        <p>También puedes <a id="viewCertificateLink" href="#" target="_blank" class="view-link"><i class="fas fa-eye"></i> Ver Página de Validación</a></p>
-                        <p>O <a id="download-html" href="#" download="pagina_validacion.html" class="download-link"><i class="fas fa-code"></i> Descargar Archivo HTML</a></p>
+                        <p>
+                            <a id="downloadPdfLink" href="#" download="certificado.pdf" class="download-link"><i class="fas fa-file-pdf"></i> Descargar PDF</a>
+                        </p>
+                        <p>
+                            <a id="viewCertificateLink" href="#" target="_blank" class="view-link"><i class="fas fa-eye"></i> Ver Página de Validación</a>
+                        </p>
+                        <p>
+                            <a id="download-html" href="#" download="pagina_validacion.html" class="download-link"><i class="fas fa-code"></i> Descargar Archivo HTML</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -126,5 +141,7 @@
 
     <!-- Script principal para la lógica de generación -->
     <script src="js/generate.js"></script>
+    <!-- NUEVO: Script para la lógica de protección por contraseña -->
+    <script src="js/admin-password.js"></script>
 </body>
 </html>

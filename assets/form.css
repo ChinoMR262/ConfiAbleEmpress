@@ -1,0 +1,213 @@
+/* === Estilos Específicos para el Formulario de Generación (form.html) === */
+
+.certificate-form {
+    background-color: var(--card-background); /* Fondo para el formulario */
+    padding: 40px; /* Espaciado interno */
+    border-radius: var(--border-radius-large); /* Bordes redondeados */
+    box-shadow: var(--box-shadow-light); /* Sombra ligera */
+    max-width: 700px; /* Ancho máximo del formulario */
+    margin: 40px auto; /* Centrar el formulario y añadir margen */
+    text-align: left; /* Alinear el texto a la izquierda dentro del formulario */
+}
+
+.form-group {
+    margin-bottom: 25px; /* Espacio entre grupos de formulario */
+}
+
+.form-group label {
+    display: block; /* Etiqueta en su propia línea */
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 8px; /* Espacio debajo de la etiqueta */
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group select {
+    width: calc(100% - 24px); /* Ancho completo menos el padding */
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-small);
+    font-size: 1rem;
+    color: var(--dark-text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="date"]:focus,
+.form-group select:focus {
+    border-color: var(--secondary-color); /* Borde azul al enfocar */
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2); /* Sombra suave al enfocar */
+    outline: none; /* Eliminar el contorno predeterminado del navegador */
+}
+
+.form-group small {
+    display: block; /* Mensaje pequeño en su propia línea */
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 5px;
+}
+
+.generate-button {
+    width: 100%; /* Botón de generación a ancho completo */
+    padding: 15px; /* Ajustar padding */
+    font-size: 1.1rem; /* Ajustar tamaño de fuente */
+    margin-top: 20px; /* Margen superior */
+}
+
+/* Estilos para los mensajes (éxito, error, info) */
+.message-box {
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: var(--border-radius-medium);
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeIn 0.5s ease-out; /* Animación de aparición */
+}
+
+.message-box.info {
+    background-color: #e7f3ff;
+    color: #2196f3;
+    border: 1px solid #90caf9;
+}
+
+.message-box.success {
+    background-color: #e6ffe6;
+    color: var(--success-color);
+    border: 1px solid #81c784;
+}
+
+.message-box.error {
+    background-color: #ffe6e6;
+    color: var(--error-color);
+    border: 1px solid #ef9a9a;
+}
+
+.message-box .close-button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: inherit; /* Heredar el color del mensaje */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.message-box .close-button:hover {
+    transform: scale(1.2);
+}
+
+/* Estilos para el indicador de carga */
+.loading-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.spinner {
+    border: 4px solid rgba(52, 152, 219, 0.3); /* Color del borde del spinner */
+    border-top: 4px solid var(--secondary-color); /* Color de la parte giratoria */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite; /* Animación de giro */
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Estilos para el contenido generado (enlaces de descarga) */
+#generatedContent {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: #f0f8ff; /* Fondo claro para el contenido generado */
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--box-shadow-light);
+    text-align: center;
+    animation: fadeIn 0.8s ease-out; /* Animación de aparición */
+}
+
+#generatedContent h3 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+#generatedContent p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+.generated-links p {
+    margin-bottom: 10px; /* Espacio entre los párrafos de los enlaces */
+}
+
+.download-link, .view-link {
+    display: inline-flex; /* Usar flexbox para alinear icono y texto */
+    align-items: center; /* Alinear verticalmente */
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: var(--border-radius-medium);
+    font-weight: 600;
+    margin: 0 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: var(--box-shadow-light);
+}
+
+.download-link i, .view-link i {
+    margin-right: 8px; /* Espacio entre el icono y el texto */
+}
+
+.download-link:hover, .view-link:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-light);
+}
+
+/* Media Queries específicas para esta página */
+@media (max-width: 767px) {
+    .certificate-form {
+        padding: 25px;
+        margin: 20px auto;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="date"],
+    .form-group select {
+        width: 100%; /* Ocupar el ancho completo en móvil */
+        padding: 10px;
+    }
+
+    .generate-button {
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    .download-link, .view-link {
+        margin-bottom: 15px; /* Espacio entre los botones en móvil */
+        width: calc(100% - 20px); /* Ajustar el ancho */
+        display: block; /* Convertir en bloque para apilar */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #generatedContent h3 {
+        font-size: 1.5rem;
+    }
+
+    #generatedContent p {
+        font-size: 1rem;
+    }
+}

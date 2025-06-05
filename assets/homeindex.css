@@ -1,0 +1,346 @@
+/* Estilos Específicos para la Página Inicial (index.html) */
+
+/* Estilos para la sección principal (Hero Section) */
+.hero-section {
+    /* Imagen de fondo más sugerente con superposición para legibilidad */
+    background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)), url('https://placehold.co/1600x900/2c3e50/ffffff?text=Confianza+y+Profesionalismo') no-repeat center center/cover;
+    color: var(--light-text-color); /* Texto blanco sobre fondo oscuro */
+    text-align: center; /* Centrar el texto */
+    padding: 120px 20px; /* Padding generoso */
+    margin-bottom: var(--padding-large); /* Margen inferior, usando variable global */
+    border-radius: var(--border-radius-large); /* Bordes redondeados, usando variable global */
+    box-shadow: var(--box-shadow-light); /* Sombra, usando variable global */
+    overflow: hidden; /* Asegura que las animaciones no se desborden */
+    margin-left: auto; /* Centrar en el contenedor */
+    margin-right: auto; /* Centrar en el contenedor */
+    max-width: 1200px; /* Asegurar que no se extienda más allá del contenedor */
+    width: 100%;
+}
+
+.hero-content {
+    max-width: 900px; /* Ancho máximo del contenido del hero */
+    margin: 0 auto; /* Centrar el contenido */
+}
+
+.hero-title {
+    font-size: 4.8rem; /* Tamaño grande para el título principal de la sección hero */
+    font-family: 'Playfair Display', serif; /* Aplicar la fuente elegante */
+    margin-bottom: 15px; /* Margen inferior */
+    font-weight: 800; /* Peso de la fuente audaz */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4); /* Sombra de texto más pronunciada para mejor contraste y profundidad */
+    line-height: 1.1; /* Ajuste de altura de línea */
+}
+
+.hero-subtitle {
+    font-size: 2.2rem; /* Tamaño adecuado para el eslogan */
+    font-family: 'Playfair Display', serif; /* Aplicar la fuente elegante */
+    margin-bottom: 30px; /* Reducido para acercar a la descripción */
+    font-weight: 500; /* Un peso de fuente ligeramente más ligero que el título */
+    opacity: 0.9;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Sombra de texto suave */
+}
+
+.hero-section .short-description {
+    font-size: 1.4rem; /* Tamaño de fuente para la descripción corta */
+    margin-bottom: 50px; /* Margen inferior para separar del botón */
+    font-weight: 400; /* Peso de la fuente normal */
+    opacity: 0.95; /* Ligeramente más opaco */
+    max-width: 700px; /* Limitar el ancho para legibilidad */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilos para el botón CTA (Call to Action) - si aplica en alguna parte específica de home */
+.cta-button {
+    display: inline-block; /* Mostrar como bloque en línea */
+    background-color: var(--secondary-color); /* Color de fondo del botón */
+    color: var(--light-text-color); /* Color de texto del botón */
+    padding: 18px 35px; /* Padding interno generoso */
+    text-decoration: none; /* Eliminar subrayado del enlace */
+    border-radius: var(--border-radius-medium); /* Bordes redondeados, usando variable global */
+    font-size: 1.2rem; /* Tamaño de fuente */
+    font-weight: 700; /* Peso de la fuente audaz */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+    box-shadow: var(--box-shadow-light); /* Sombra para el botón, usando variable global */
+    letter-spacing: 0.5px; /* Espaciado entre letras */
+    cursor: pointer; /* Cambiar cursor a puntero */
+}
+
+.cta-button:hover {
+    background-color: #2980b9; /* Cambio de color al pasar el ratón */
+    transform: translateY(-3px) scale(1.02); /* Efecto de elevación y pequeña escala */
+    box-shadow: var(--box-shadow-strong); /* Sombra más pronunciada */
+}
+
+.cta-button:active {
+    transform: translateY(0); /* Efecto de "presionado" */
+    box-shadow: var(--box-shadow-light);
+}
+
+
+/* Estilos para las tarjetas de características (how-it-works-section) */
+.features-grid {
+    display: grid; /* Usar CSS Grid para el diseño de las tarjetas */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
+    gap: 30px; /* Espacio entre las tarjetas */
+    margin-top: 50px; /* Margen superior */
+}
+
+.feature-card {
+    background-color: var(--card-background); /* Fondo blanco para las tarjetas */
+    padding: 30px;
+    border-radius: var(--border-radius-medium); /* Bordes redondeados */
+    box-shadow: var(--box-shadow-light); /* Sombra ligera */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+    text-align: center; /* Centrar el contenido */
+    display: flex; /* Usar flexbox para el contenido de la tarjeta */
+    flex-direction: column; /* Organizar en columna */
+    align-items: center; /* Alinear al centro */
+}
+
+.feature-card:hover {
+    transform: translateY(-8px); /* Efecto de elevación al pasar el ratón */
+    box-shadow: var(--box-shadow-medium); /* Sombra más pronunciada */
+}
+
+.feature-card .icon-wrapper {
+    background-color: var(--secondary-color); /* Fondo del círculo del icono */
+    color: var(--light-text-color); /* Color del icono */
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* Hacerlo un círculo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem; /* Tamaño del icono */
+    margin-bottom: 20px; /* Margen inferior */
+    box-shadow: var(--box-shadow-medium); /* Sombra para el icono */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.feature-card:hover .icon-wrapper {
+    background-color: var(--primary-color); /* Cambiar color al pasar el ratón */
+    transform: scale(1.1); /* Ligeramente más grande */
+}
+
+.feature-card h3 {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    color: #666;
+    margin: 0; /* Eliminar margen predeterminado */
+}
+
+/* Sección de elementos de confianza adicionales */
+.trust-elements-section {
+    background-color: var(--primary-color); /* Fondo oscuro para esta sección */
+    color: var(--light-text-color); /* Texto claro */
+    padding: var(--padding-large) 0; /* Más padding */
+    box-shadow: inset 0 5px 15px rgba(0,0,0,0.1); /* Sombra interna */
+    border-radius: var(--border-radius-medium); /* Bordes redondeados */
+    margin-left: auto; /* Centrar en el contenedor */
+    margin-right: auto; /* Centrar en el contenedor */
+    max-width: 1200px; /* Asegurar que no se extienda más allá del contenedor */
+    width: 100%;
+}
+
+.trust-elements-section .section-title {
+    color: var(--light-text-color); /* Título en color claro */
+}
+
+.trust-elements-section .section-title::after {
+    background: var(--secondary-color); /* Línea de título en color secundaria */
+}
+
+.trust-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.trust-item {
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
+    padding: 30px;
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--box-shadow-light);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+}
+
+.trust-item:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Más opaco al pasar el rato */
+    transform: translateY(-10px); /* Mayor elevación */
+    box-shadow: var(--box-shadow-medium);
+}
+
+.trust-item i {
+    font-size: 3rem; /* Tamaño de las iconas */
+    color: var(--secondary-color); /* Cor das iconas */
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* Sombra para as iconas */
+}
+
+.trust-item h3 {
+    font-size: 1.5rem;
+    color: var(--light-text-color);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.trust-item p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8); /* Texto lixeiramente transparente */
+    margin: 0;
+}
+
+/* Animaciones CSS */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Clases para aplicar animacións */
+.animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0; /* Asegura que o elemento estea oculto antes da animación */
+}
+
+.animate-slide-up {
+    animation: slideUp 1s ease-out forwards;
+    opacity: 0;
+}
+
+.animate-scale-in {
+    animation: scaleIn 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+/* Retrasos para animacións graduadas */
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+.delay-4 { animation-delay: 0.8s; }
+.delay-5 { animation-delay: 1.0s; }
+.delay-6 { animation-delay: 1.2s; }
+.delay-7 { animation-delay: 1.4s; }
+.delay-8 { animation-delay: 1.6s; }
+.delay-9 { animation-delay: 1.8s; }
+.delay-10 { animation-delay: 2.0s; }
+.delay-11 { animation-delay: 2.2s; }
+
+
+/* Media Queries para Responsividade */
+
+/* Tabletas e pantallas medianas (768px a 992px) */
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 3.5rem; /* Axuste para tabletas */
+    }
+
+    .hero-subtitle {
+        font-size: 1.8rem; /* Axuste para tabletas */
+    }
+
+    .hero-section .short-description {
+        font-size: 1.2rem; /* Axuste para tabletas */
+    }
+
+    .cta-button {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Axuste para tabletas */
+        gap: 25px;
+    }
+
+    .trust-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Axuste para tabletas */
+        gap: 30px;
+    }
+}
+
+/* Teléfonos e pantallas pequenas (ata 767px) */
+@media (max-width: 767px) {
+    .hero-section {
+        padding: 80px 15px; /* Reducir padding no hero */
+    }
+
+    .hero-title {
+        font-size: 2.8rem; /* Axuste para móviles */
+        margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem; /* Axuste para móviles */
+        margin-bottom: 25px;
+    }
+
+    .hero-section .short-description {
+        font-size: 1.1rem; /* Axuste para móviles */
+        margin-bottom: 35px;
+    }
+
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+        width: 90%; /* Facer o botón máis ancho en móbil */
+        max-width: 300px; /* Limitar ancho máximo */
+    }
+
+    .feature-card .icon-wrapper {
+        width: 60px; /* Reducir tamaño da icona */
+        height: 60px;
+        font-size: 2rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1.4rem;
+    }
+
+    .trust-item i {
+        font-size: 2.5rem;
+    }
+
+    .trust-item h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Teléfonos moi pequenos (ata 479px) */
+@media (max-width: 479px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-section .short-description {
+        font-size: 1rem;
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}

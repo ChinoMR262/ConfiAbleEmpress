@@ -1,0 +1,338 @@
+/* Importar la fuente Inter de Google Fonts para un diseño moderno y legible */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap'); /* Importar Playfair Display */
+
+/* Variables CSS para una gestión de colores y sombras más sencilla y consistente */
+:root {
+    --primary-color: #2c3e50; /* Azul oscuro para elementos principales como el encabezado y pie de página */
+    --secondary-color: #3498db; /* Azul vibrante para acentos y botones */
+    --background-color: #ecf0f1; /* Gris claro para el fondo general de la página */
+    --text-color: #34495e; /* Gris oscuro para el texto principal */
+    --light-text-color: #ffffff; /* Blanco para texto sobre fondos oscuros */
+    --accent-color: #2ecc71; /* Verde para elementos de éxito o énfasis */
+    --error-color: #e74c3c; /* Rojo para mensajes de error */
+    --card-background: #ffffff; /* Blanco puro para el fondo de las tarjetas o secciones */
+    --box-shadow-light: 0 2px 5px rgba(0, 0, 0, 0.08); /* Sombra ligera para sutileza */
+    --box-shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.12); /* Sombra media para profundidad */
+    --box-shadow-strong: 0 8px 25px rgba(0, 0, 0, 0.2); /* Sombra fuerte para elementos destacados */
+    --border-radius-small: 6px; /* Radio de borde pequeño para elementos sutiles */
+    --border-radius-medium: 10px; /* Radio de borde medio para secciones y tarjetas */
+    --border-radius-large: 16px; /* Radio de borde grande para elementos destacados */
+    --padding-large: 80px; /* Padding generoso para secciones */
+    --footer-gap: 25px; /* Nueva variable para espacio entre elementos principales del footer */
+}
+
+/* Estilos generales para el cuerpo de la página */
+body {
+    font-family: 'Inter', sans-serif; /* Aplicar la fuente Inter */
+    margin: 0; /* Eliminar el margen predeterminado del cuerpo */
+    padding: 0; /* Eliminar el padding predeterminado del cuerpo */
+    background-color: var(--background-color); /* Usar el color de fondo definido */
+    color: var(--text-color); /* Usar el color de texto principal */
+    line-height: 1.6; /* Altura de línea para mejorar la legibilidad */
+    display: flex; /* Usar flexbox para organizar el contenido */
+    flex-direction: column; /* Organizar los elementos en columna */
+    min-height: 100vh; /* Asegurar que el cuerpo ocupe al menos el 100% de la altura de la ventana */
+    overflow-x: hidden; /* Prevenir el desplazamiento horizontal */
+}
+
+/* Contenedor principal para centrar y limitar el ancho del contenido */
+.container {
+    width: 90%; /* Ancho del 90% */
+    max-width: 1200px; /* Ancho máximo para evitar que el contenido se extienda demasiado */
+    margin: 0 auto; /* Centrar el contenedor horizontalmente */
+    padding: 20px 0; /* Padding vertical */
+}
+
+/* Estilos para el encabezado */
+header {
+    background-color: var(--primary-color); /* Color de fondo oscuro del encabezado */
+    color: var(--light-text-color); /* Color de texto claro */
+    padding: 1rem 0; /* Padding superior e inferior */
+    box-shadow: var(--box-shadow-medium); /* Sombra para dar profundidad */
+    position: sticky; /* Encabezado pegajoso al hacer scroll */
+    top: 0; /* Posición en la parte superior */
+    z-index: 1000; /* Asegurar que esté por encima de otros elementos */
+    border-bottom-left-radius: var(--border-radius-large); /* Bordes redondeados inferiores */
+    border-bottom-right-radius: var(--border-radius-large);
+}
+
+.header-content {
+    display: flex; /* Usar flexbox para el contenido del encabezado */
+    justify-content: space-between; /* Espaciar elementos a los extremos */
+    align-items: center; /* Alinear verticalmente */
+    padding: 0 20px; /* Padding horizontal */
+}
+
+.logo {
+    display: flex; /* Flexbox para el logo y el título */
+    align-items: center; /* Alinear verticalmente */
+    text-decoration: none; /* Eliminar subrayado del enlace */
+    color: var(--light-text-color); /* Color de texto */
+    transition: transform 0.3s ease; /* Transición suave al pasar el ratón */
+}
+
+.logo:hover {
+    transform: scale(1.02); /* Pequeña escala al pasar el ratón */
+}
+
+.logo-img {
+    height: 60px; /* Altura del logo */
+    margin-right: 15px; /* Margen a la derecha del logo */
+    border-radius: var(--border-radius-medium); /* Bordes redondeados para el logo */
+    box-shadow: var(--box-shadow-light); /* Sombra sutil para el logo */
+}
+
+header h1 {
+    margin: 0; /* Eliminar margen predeterminado */
+    font-size: 3rem; /* Tamaño de fuente del título, más grande */
+    font-weight: 700; /* Peso de la fuente más audaz */
+    letter-spacing: -0.5px; /* Ajuste de espaciado entre letras */
+    font-family: 'Playfair Display', serif; /* Aplicar la fuente elegante */
+}
+
+/* Estilos para el contenido principal */
+main {
+    flex: 1; /* Permitir que el contenido principal ocupe el espacio disponible */
+    padding: 30px 0; /* Padding vertical */
+}
+
+/* Estilos para las secciones de contenido */
+.content-section {
+    padding: var(--padding-large) 0; /* Padding generoso para las secciones */
+    text-align: center; /* Centrar el texto */
+    margin-bottom: 40px; /* Margen inferior entre secciones */
+    background-color: var(--card-background); /* Fondo blanco para las secciones */
+    border-radius: var(--border-radius-large); /* Bordes redondeados */
+    box-shadow: var(--box-shadow-light); /* Sombra ligera */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+}
+
+.content-section:hover {
+    transform: translateY(-5px); /* Efecto de elevación al pasar el ratón */
+    box-shadow: var(--box-shadow-medium); /* Sombra más pronunciada al pasar el ratón */
+}
+
+.content-section:last-of-type {
+    margin-bottom: 0; /* Eliminar margen inferior de la última sección */
+}
+
+.section-title {
+    font-size: 2.8rem; /* Tamaño de fuente grande para los títulos de sección */
+    color: var(--primary-color); /* Color de título */
+    margin-bottom: 30px; /* Margen inferior */
+    position: relative; /* Para el pseudo-elemento de la línea */
+    padding-bottom: 15px; /* Espacio para la línea */
+    font-weight: 700; /* Peso de la fuente */
+}
+
+.section-title::after {
+    content: ''; /* Contenido vacío para la línea decorativa */
+    width: 100px; /* Ancho de la línea */
+    height: 5px; /* Grosor de la línea */
+    background: var(--secondary-color); /* Color de la línea */
+    position: absolute; /* Posición absoluta */
+    bottom: 0; /* En la parte inferior del título */
+    left: 50%; /* Centrar horizontalmente */
+    transform: translateX(-50%); /* Ajuste para centrar */
+    border-radius: 5px; /* Bordes redondeados para la línea */
+}
+
+.content-section p {
+    font-size: 1.15rem; /* Tamaño de fuente ligeramente más grande para párrafos */
+    max-width: 900px; /* Ancho máximo para la legibilidad del texto */
+    margin: 0 auto 20px auto; /* Centrar y añadir margen inferior */
+    color: #555; /* Color de texto ligeramente más suave */
+}
+
+/* Estilos para el pie de página */
+footer {
+    background-color: var(--primary-color); /* Color de fondo oscuro para el pie de página */
+    color: var(--light-text-color); /* Color de texto claro */
+    text-align: center; /* Centrar el texto e inline-flex elementos directos */
+    padding: 40px 20px; /* Padding generoso */
+    margin-top: auto; /* Empujar el pie de página hacia abajo */
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15); /* Sombra superior */
+    border-top-left-radius: var(--border-radius-large); /* Bordes redondeados superiores */
+    border-top-right-radius: var(--border-radius-large);
+}
+
+/* Centrado más robusto para los elementos dentro del .container del footer */
+footer .container {
+    display: flex; /* Activar flexbox para los elementos directos */
+    flex-direction: column; /* Apilar elementos verticalmente */
+    align-items: center; /* Centrar horizontalmente los elementos hijos */
+    gap: var(--footer-gap); /* Espacio consistente entre las secciones principales del footer */
+    width: 90%; /* Asegurar que el contenedor sigue limitando el ancho */
+    max-width: 1200px;
+    margin: 0 auto; /* Asegurar que el contenedor se centre a sí mismo */
+    padding: 0; /* Resetear padding si el footer ya lo tiene */
+}
+
+
+.footer-links {
+    margin-bottom: 0; /* Espacio manejado por el gap del contenedor padre */
+    display: flex; /* Usar flexbox para organizar los enlaces */
+    justify-content: center; /* Centrar los enlaces */
+    flex-wrap: wrap; /* Permitir que los enlaces se envuelvan en varias líneas */
+    gap: 20px; /* Espacio entre los enlaces */
+}
+
+.footer-links a {
+    color: var(--light-text-color); /* Color de los enlaces */
+    text-decoration: none; /* Eliminar subrayado */
+    font-weight: 500; /* Peso de la fuente */
+    transition: color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+    padding: 5px 10px; /* Padding para el área de clic */
+    border-radius: var(--border-radius-small); /* Bordes redondeados */
+}
+
+.footer-links a:hover {
+    color: var(--secondary-color); /* Cambio de color al pasar el ratón */
+    transform: translateY(-2px); /* Pequeño efecto de elevación */
+}
+
+.footer-contact {
+    /* No hay necesidad de margin-bottom aquí si el padre es flex con gap */
+    margin: 0; /* Resetear margen */
+    display: flex; /* Hacer flex para centrar contenido interno */
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Espacio entre p y legal-notice-container */
+}
+
+.footer-contact p {
+    margin: 0; /* Eliminar margen predeterminado, el gap del flexbox maneja el espaciado */
+    font-size: 1rem; /* Tamaño de fuente */
+}
+
+.footer-contact a {
+    color: var(--light-text-color); /* Color del enlace de correo */
+    text-decoration: underline; /* Subrayar el correo */
+    transition: color 0.3s ease; /* Transición suave */
+}
+
+.footer-contact a:hover {
+    color: var(--secondary-color); /* Cambio de color al pasar el ratón */
+}
+
+.legal-notice-container { /* El contenedor del aviso legal que está en index.html */
+    width: 100%; /* Asegurar que ocupe el ancho completo de su padre flex item */
+    text-align: center; /* Centrar el texto dentro de este contenedor */
+}
+
+.legal-notice {
+    font-size: 0.9rem; /* Tamaño de fuente más pequeño para el aviso legal */
+    opacity: 0.7; /* Ligeramente transparente */
+    max-width: 800px; /* Ancho máximo para el aviso legal */
+    margin: 0 auto; /* Centrar el párrafo dentro de su contenedor */
+    line-height: 1.4; /* Altura de línea para la legibilidad */
+}
+
+.footer-copyright {
+    margin-top: 0; /* Espacio manejado por el gap del contenedor padre */
+    font-size: 0.9rem; /* Tamaño de fuente */
+    opacity: 0.6; /* Más transparente */
+}
+
+/* Media Queries para Responsividad */
+
+/* Tablets y pantallas medianas (768px a 992px) */
+@media (max-width: 992px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .logo-img {
+        height: 50px;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .content-section p {
+        font-size: 1.05rem;
+    }
+}
+
+/* Teléfonos y pantallas pequeñas (hasta 767px) */
+@media (max-width: 767px) {
+    .header-content {
+        flex-direction: column; /* Apilar logo y título en pantallas pequeñas */
+        text-align: center;
+    }
+
+    .logo {
+        margin-bottom: 15px; /* Espacio entre logo/título y el resto del header */
+    }
+
+    .logo-img {
+        height: 45px;
+        margin-right: 10px;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .content-section {
+        padding: 40px 15px; /* Reducir padding en secciones */
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }
+
+    .section-title::after {
+        width: 70px; /* Reducir ancho de la línea del título */
+        height: 4px;
+    }
+
+    .content-section p {
+        font-size: 0.95rem;
+    }
+
+    .footer-links {
+        flex-direction: column; /* Apilar enlaces del pie de página */
+        gap: 10px; /* Reducir espacio entre enlaces apilados */
+    }
+
+    .footer-links a {
+        padding: 5px 0; /* Ajustar padding para enlaces apilados */
+    }
+
+    .legal-notice {
+        font-size: 0.85rem;
+        margin: 15px auto; /* Ajustar margen para pantallas pequeñas */
+    }
+
+    .footer-contact p {
+        font-size: 0.9rem; /* Ajustar tamaño de fuente */
+    }
+
+    .footer-copyright {
+        font-size: 0.8rem; /* Ajustar tamaño de fuente */
+    }
+}
+
+/* Teléfonos muy pequeños (hasta 479px) */
+@media (max-width: 479px) {
+    .logo-img {
+        height: 40px;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .content-section p {
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,365 @@
+/* === Estilos Específicos para la Página de Administrador (admin-generador.html) === */
+
+/* Variables locales para colores del administrador si se desea personalizar */
+:root {
+    --admin-primary-color: #2F4F4F; /* Dark Slate Gray, más sofisticado */
+    --admin-secondary-color: #6A5ACD; /* Slate Blue, un azul/púrpura más rico y moderno */
+    --admin-background-color: #F8F8F8; /* Gris muy claro, limpio */
+    --admin-text-color: #333333; /* Gris oscuro para mejor contraste */
+    --admin-accent-color: #4CAF50; /* Verde más brillante y común */
+    --admin-error-color: #E74C3C; /* Rojo para mensajes de error */
+}
+
+body {
+    background-color: var(--admin-background-color);
+    background-image: url('https://placehold.co/1920x1080/E0F2F7/B0D9E7/png?text=Fondo+Sutil'); /* Fondo sutil */
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Estilos específicos para la capa de contraseña */
+.password-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(44, 62, 80, 0.9); /* Fondo oscuro semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Asegura que esté por encima de todo */
+    flex-direction: column;
+    color: var(--light-text-color);
+    text-align: center;
+    padding: 20px;
+    backdrop-filter: blur(8px); /* Efecto de desenfoque */
+    -webkit-backdrop-filter: blur(8px); /* Compatibilidad Safari */
+    opacity: 0;
+    visibility: hidden;
+    animation: fadeIn 0.5s forwards; /* Animación de entrada */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; visibility: visible; }
+}
+
+.password-overlay h2 {
+    font-size: 2.8rem; /* Tamaño más grande */
+    margin-bottom: 25px;
+    color: var(--light-text-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Sombra de texto */
+    animation: slideInDown 0.7s forwards; /* Animación de entrada */
+}
+
+.password-overlay p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    animation: slideInUp 0.7s forwards; /* Animación de entrada */
+    animation-delay: 0.2s;
+}
+
+@keyframes slideInDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.password-overlay input[type="password"] {
+    padding: 14px; /* Más padding */
+    border-radius: var(--border-radius-large); /* Más redondeado */
+    border: 2px solid var(--admin-secondary-color); /* Borde con color secundario */
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    width: 80%;
+    max-width: 350px; /* Ancho máximo un poco más grande */
+    background-color: var(--card-background); /* Fondo blanco */
+    color: var(--admin-text-color);
+    box-shadow: var(--box-shadow-light);
+    transition: all 0.3s ease;
+}
+
+.password-overlay input[type="password"]:focus {
+    border-color: var(--admin-accent-color); /* Borde verde al enfocar */
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.3); /* Sombra de brillo */
+    outline: none;
+}
+
+.password-overlay button {
+    background-color: var(--admin-secondary-color);
+    color: var(--light-text-color);
+    padding: 14px 35px; /* Más padding */
+    border: none;
+    border-radius: var(--border-radius-large); /* Más redondeado */
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--box-shadow-medium);
+}
+
+.password-overlay button:hover {
+    background-color: #5A4AA8; /* Tono más oscuro al pasar el ratón */
+    transform: translateY(-3px); /* Efecto de elevación */
+    box-shadow: var(--box-shadow-strong);
+}
+
+.password-overlay .error-message {
+    color: var(--admin-error-color);
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 1rem;
+    display: none; /* Oculto por defecto */
+    animation: shake 0.5s; /* Animación de temblor para el error */
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+/* Ocultar el contenido del generador por defecto */
+.generator-content {
+    display: none;
+    padding: 40px 20px;
+    background-color: var(--card-background);
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--box-shadow-strong);
+    max-width: 800px;
+    margin: 40px auto;
+    text-align: center;
+    animation: slideInFromLeft 0.8s forwards; /* Animación de entrada */
+}
+
+@keyframes slideInFromLeft {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.section-title {
+    font-size: 2.2rem;
+    color: var(--admin-primary-color);
+    margin-bottom: 20px;
+    font-weight: 800;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.generator-content p {
+    font-size: 1.1rem;
+    color: var(--admin-text-color);
+    margin-bottom: 30px;
+}
+
+.certificate-form {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--box-shadow-medium);
+    text-align: left;
+    border: 1px solid #eee;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--admin-primary-color);
+    font-size: 1rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group select {
+    width: calc(100% - 24px); /* Ajustar para padding y borde */
+    padding: 12px;
+    border-radius: var(--border-radius-medium);
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: var(--card-background);
+    color: var(--admin-text-color);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="date"]:focus,
+.form-group select:focus {
+    border-color: var(--admin-secondary-color);
+    box-shadow: 0 0 0 4px rgba(106, 90, 205, 0.2);
+    outline: none;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 5px;
+    color: #777;
+    font-size: 0.85rem;
+}
+
+.cta-button.generate-button {
+    background-color: var(--admin-accent-color);
+    color: var(--light-text-color);
+    padding: 15px 30px;
+    border: none;
+    border-radius: var(--border-radius-large);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--box-shadow-medium);
+    width: auto; /* Para que no ocupe todo el ancho */
+    margin-top: 20px;
+}
+
+.cta-button.generate-button:hover {
+    background-color: #3CB371; /* Tono más oscuro al pasar el ratón */
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow-strong);
+}
+
+.message-box {
+    margin-top: 30px;
+    padding: 15px;
+    border-radius: var(--border-radius-medium);
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--box-shadow-light);
+}
+
+.message-box p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.message-box.info { background-color: #e7f3fe; color: #3498db; border: 1px solid #a7d9f9; }
+.message-box.success { background-color: #e6ffe6; color: var(--admin-accent-color); border: 1px solid #b3e6b3; }
+.message-box.error { background-color: #ffe6e6; color: var(--admin-error-color); border: 1px solid #ffb3b3; }
+
+.message-box .close-button {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.message-box .close-button:hover {
+    color: #555;
+}
+
+.loading-indicator {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    color: var(--admin-secondary-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    animation: fadeIn 0.5s forwards;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid var(--admin-secondary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.generated-links {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.generated-links h3 {
+    color: var(--admin-primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.generated-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--admin-secondary-color);
+    color: var(--light-text-color);
+    padding: 12px 25px;
+    border-radius: var(--border-radius-large);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: var(--box-shadow-medium);
+    min-width: 200px;
+}
+
+.generated-links a i {
+    margin-right: 10px;
+}
+
+.generated-links a:hover {
+    background-color: #5A4AA8;
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow-strong);
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .password-overlay h2 {
+        font-size: 2rem;
+    }
+    .password-overlay input[type="password"],
+    .password-overlay button {
+        font-size: 1rem;
+        padding: 10px 25px;
+    }
+    .generator-content {
+        padding: 20px;
+        margin: 20px auto;
+    }
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .generator-content p {
+        font-size: 1rem;
+    }
+    .certificate-form {
+        padding: 20px;
+    }
+    .form-group input, .form-group select {
+        padding: 10px;
+    }
+    .cta-button.generate-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+    .generated-links a {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        min-width: unset;
+        width: 100%;
+    }
+}

@@ -1,0 +1,465 @@
+/* === Estilos Específicos para la Página de Validación de Certificados (empresa123.html) === */
+
+/* Sección principal de validación del certificado */
+.certificate-validation-section {
+    padding: 60px 0;
+    text-align: center;
+    background-color: var(--card-background);
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--box-shadow-light);
+    margin-bottom: 40px;
+}
+
+.certificate-validation-section .container {
+    max-width: 900px; /* Ancho máximo del contenido para legibilidad */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.certificate-validation-section .section-title {
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+    font-weight: 700;
+}
+
+.certificate-validation-section .section-title::after {
+    content: '';
+    width: 100px;
+    height: 5px;
+    background: var(--secondary-color);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+}
+
+.company-logo-large {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 25px;
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--box-shadow-light);
+}
+
+.company-name-validation {
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.validation-slogan {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* Estilos para el contenedor del código QR */
+.qr-code-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: var(--border-radius-medium);
+    border: 1px solid var(--border-color);
+    display: inline-block; /* Para centrarlo si el padre es text-align: center */
+    margin: 30px auto;
+    box-shadow: var(--box-shadow-light);
+}
+
+.qr-code-container img {
+    width: 120px;
+    height: 120px;
+    border: 1px solid #eee;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.qr-code-container p {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 10px;
+}
+
+/* Detalles de verificación del certificado */
+.verification-details {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--box-shadow-light);
+    margin-top: 30px;
+    text-align: left;
+}
+
+.verification-details h3 {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: var(--dark-text-color);
+}
+
+.detail-item i {
+    color: var(--primary-color);
+    margin-right: 15px;
+    font-size: 1.5rem;
+    width: 30px; /* Ancho fijo para alinear iconos */
+    text-align: center;
+}
+
+.star-rating {
+    color: #f39c12; /* Color dorado para las estrellas */
+    font-size: 1.6rem;
+    margin-left: 10px;
+}
+
+.expired-message {
+    color: var(--error-color);
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    animation: pulse 1.5s infinite alternate; /* Animación para el mensaje de expiración */
+}
+
+@keyframes pulse {
+    from { opacity: 1; }
+    to { opacity: 0.6; }
+}
+
+/* Estilos para la barra de confianza y su tooltip */
+.trust-bar-container {
+    width: 100%;
+    height: 30px;
+    background-color: #e0e0e0;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 40px auto;
+    display: flex;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+    position: relative; /* Necesario para posicionar el tooltip */
+}
+
+.trust-segment {
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.trust-segment[data-segment="security"] { background-color: #2ecc71; /* Verde */ }
+.trust-segment[data-segment="transparency"] { background-color: #3498db; /* Azul */ }
+.trust-segment[data-segment="reputation"] { background-color: #f1c40f; /* Amarillo */ }
+.trust-segment[data-segment="experience"] { background-color: #e67e22; /* Naranja */ }
+.trust-segment[data-segment="innovation"] { background-color: #9b59b6; /* Púrpura */ }
+
+.trust-segment:hover {
+    filter: brightness(1.1); /* Ligeramente más brillante al pasar el ratón */
+    transform: scaleY(1.1); /* Efecto de "levantar" */
+    z-index: 10; /* Asegura que el segmento hovered esté sobre los demás */
+}
+
+.trust-tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px); /* Posicionar encima de la barra */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--light-text-color);
+    padding: 8px 12px;
+    border-radius: var(--border-radius-small);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 20; /* Asegura que el tooltip esté encima de todo */
+}
+
+.trust-tooltip.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Sección de comentarios simulados */
+.comment-section {
+    background-color: var(--card-background);
+    padding: 40px;
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--box-shadow-light);
+    margin-top: 40px;
+}
+
+.comment-section h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.comment-list {
+    margin-top: 30px;
+}
+
+.comment-item {
+    background-color: #f8f8f8;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: var(--border-radius-medium);
+    margin-bottom: 20px;
+    text-align: left;
+    box-shadow: var(--box-shadow-light);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+.comment-date {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.comment-body {
+    font-size: 1rem;
+    color: var(--dark-text-color);
+    margin-bottom: 15px;
+}
+
+.comment-actions {
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+.comment-actions .vote-button {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.comment-actions .vote-button:hover {
+    color: var(--secondary-color);
+}
+
+/* Estilos para el formulario de comentario simulado */
+.comment-form {
+    background-color: #f0f8ff; /* Fondo claro para el formulario */
+    padding: 30px;
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--box-shadow-light);
+    margin-top: 30px;
+    text-align: left;
+}
+
+.comment-form h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.comment-form .form-group {
+    margin-bottom: 20px;
+}
+
+.comment-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+.comment-form input[type="text"],
+.comment-form textarea {
+    width: calc(100% - 24px); /* Ancho completo menos el padding */
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-small);
+    font-size: 1rem;
+    color: var(--dark-text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comment-form input[type="text"]:focus,
+.comment-form textarea:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    outline: none;
+}
+
+.comment-form textarea {
+    resize: vertical; /* Permitir redimensionar verticalmente */
+    min-height: 80px;
+}
+
+.comment-form button {
+    background-color: var(--secondary-color);
+    color: var(--light-text-color);
+    padding: 12px 25px;
+    border: none;
+    border-radius: var(--border-radius-medium);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.comment-form button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.fake-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: var(--border-radius-small);
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    display: none; /* Oculto por defecto */
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+/* Estilos para modales (mensajes emergentes) */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Posición fija para cubrir toda la ventana */
+    z-index: 1000; /* Por encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Habilitar scroll si el contenido es grande */
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente oscuro */
+    display: flex; /* Usar flexbox para centrar contenido */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--card-background);
+    margin: auto;
+    padding: 30px;
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--box-shadow-strong);
+    width: 80%; /* Ancho del modal */
+    max-width: 500px; /* Ancho máximo */
+    text-align: center;
+    position: relative;
+    animation: scaleIn 0.3s ease-out; /* Animación de aparición */
+}
+
+.modal-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.modal-content p {
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+
+.modal-content button {
+    background-color: var(--secondary-color);
+    color: var(--light-text-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius-medium);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-content button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.close-modal-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal-button:hover,
+.close-modal-button:focus {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 767px) {
+    .company-name-validation {
+        font-size: 2.2rem;
+    }
+
+    .validation-slogan {
+        font-size: 1.1rem;
+    }
+
+    .detail-item {
+        font-size: 1rem;
+        flex-direction: column; /* Apilar en móviles */
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .detail-item i {
+        margin-bottom: 5px;
+    }
+
+    .trust-bar-container {
+        height: 20px;
+    }
+
+    .trust-tooltip {
+        font-size: 0.8rem;
+        padding: 5px 8px;
+    }
+
+    .comment-item {
+        padding: 15px;
+    }
+
+    .comment-form {
+        padding: 20px;
+    }
+
+    .comment-form input[type="text"],
+    .comment-form textarea {
+        width: 100%; /* Ajustar ancho completo en móvil */
+        padding: 10px;
+    }
+
+    .modal-content {
+        width: 95%; /* Mayor ancho del modal en móviles */
+        padding: 20px;
+    }
+}

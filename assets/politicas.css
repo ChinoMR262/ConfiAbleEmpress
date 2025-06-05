@@ -1,0 +1,88 @@
+/* === Estilos Específicos para las Páginas de Políticas (TÉRMINOS DE USO Y POLÍTICA.html, politica-privacidad.html, politica-de-cookies.html) === */
+
+/* Ajustes generales para el contenido de las secciones de políticas */
+.content-section .container {
+    text-align: left; /* Asegura que el contenido se alinee a la izquierda dentro del contenedor */
+    max-width: 900px; /* Limita el ancho para legibilidad */
+    margin: 0 auto; /* Centrar el contenedor */
+}
+
+/* Estilos para los subtítulos dentro de las secciones de contenido */
+.content-section h2 {
+    text-align: left; /* Alinea los subtítulos a la izquierda */
+    font-size: 2rem; /* Ajusta el tamaño de los subtítulos */
+    color: var(--secondary-color); /* Color para los subtítulos */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.content-section h2::after {
+    content: '';
+    width: 60px; /* Línea más corta para subtítulos */
+    height: 3px;
+    background: var(--primary-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 5px;
+}
+
+/* Estilos para los párrafos dentro de las secciones de contenido */
+.content-section p {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: var(--dark-text-color);
+}
+
+/* Estilos para las listas desordenadas */
+.content-section ul {
+    list-style: disc; /* Estilo de viñeta de disco */
+    margin-left: 25px; /* Indentación de la lista */
+    margin-bottom: 20px;
+    color: var(--dark-text-color);
+}
+
+/* Estilos para los elementos de la lista */
+.content-section li {
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+/* Estilos para los botones de navegación al final de las secciones de políticas */
+.navigation-buttons {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex; /* Usar flexbox para organizar los botones */
+    justify-content: center; /* Centrar los botones */
+    flex-wrap: wrap; /* Permitir que los botones se envuelvan en varias líneas */
+    gap: 20px; /* Espacio entre botones */
+}
+
+/* Ajustes para los botones dentro del contenedor de navegación, si es necesario */
+.navigation-buttons .button {
+    margin: 0; /* Asegura que el 'gap' de flexbox maneje el espaciado */
+}
+
+/* Media Queries para Responsividad específica de las políticas */
+@media (max-width: 767px) {
+    .content-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .content-section p {
+        font-size: 0.95rem;
+    }
+
+    .content-section li {
+        font-size: 0.95rem;
+    }
+
+    .navigation-buttons {
+        flex-direction: column; /* Apilar botones en pantallas pequeñas */
+        gap: 15px; /* Reducir el espacio al apilar */
+    }
+}

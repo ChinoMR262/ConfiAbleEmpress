@@ -2,6 +2,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // === Lógica compartida para las páginas de certificado ===
     // Este script se ejecutará en cada página de certificado generada.
 
+    // Define una URL base para los assets dentro del certificado generado.
+    // Esto es crucial para que las imágenes y CSS se carguen correctamente
+    // tanto localmente (con un servidor) como en GitHub Pages.
+    // Asegúrate de que 'ConfiAbleEmpress' coincida con el nombre de tu repositorio.
+    const REPO_NAME = '/ConfiAbleEmpress'; 
+    const BASE_URL = window.location.origin + (window.location.pathname.includes(REPO_NAME) ? REPO_NAME : '');
+
+    console.log("certificate-logic.js: BASE_URL detectada:", BASE_URL);
+
     // Función para escapar caracteres HTML y prevenir XSS.
     function escapeHtml(text) {
         const map = {
@@ -14,26 +23,28 @@ document.addEventListener('DOMContentLoaded', () => {
         return text.replace(/[&<>"']/g, function(m) { return map[m]; });
     }
 
-    // Array de URLs de avatares genéricos no personales.
+    // Array de URLs de avatares genéricos no personales (ahora rutas locales).
+    // Asegúrate de que estas imágenes existan en tu carpeta 'assets/avatars/'.
     const avatarImages = [
-        "https://placehold.co/50x50/FF6347/FFFFFF?text=A", // Tomato
-        "https://placehold.co/50x50/4682B4/FFFFFF?text=B", // SteelBlue
-        "https://placehold.co/50x50/32CD32/FFFFFF?text=C", // LimeGreen
-        "https://placehold.co/50x50/DA70D6/FFFFFF?text=D", // Orchid
-        "https://placehold.co/50x50/FFD700/000000?text=E",  // Gold
-        "https://placehold.co/50x50/8A2BE2/FFFFFF?text=F", // BlueViolet
-        "https://placehold.co/50x50/FF4500/FFFFFF?text=G", // OrangeRed
-        "https://placehold.co/50x50/20B2AA/FFFFFF?text=H", // LightSeaGreen
-        "https://placehold.co/50x50/DC143C/FFFFFF?text=I", // Crimson
-        "https://placehold.co/50x50/00CED1/FFFFFF?text=J",  // DarkTurquoise
-        "https://placehold.co/50x50/8B4513/FFFFFF?text=K", // SaddleBrown
-        "https://placehold.co/50x50/483D8B/FFFFFF?text=L", // DarkSlateBlue
-        "https://placehold.co/50x50/2E8B57/FFFFFF?text=M", // SeaGreen
-        "https://placehold.co/50x50/9932CC/FFFFFF?text=N", // DarkOrchid
-        "https://placehold.co/50x50/FF8C00/FFFFFF?text=O"  // DarkOrange
+        `${BASE_URL}/assets/avatars/avatar-a.png`, 
+        `${BASE_URL}/assets/avatars/avatar-b.png`, 
+        `${BASE_URL}/assets/avatars/avatar-c.png`, 
+        `${BASE_URL}/assets/avatars/avatar-d.png`, 
+        `${BASE_URL}/assets/avatars/avatar-e.png`, 
+        `${BASE_URL}/assets/avatars/avatar-f.png`, 
+        `${BASE_URL}/assets/avatars/avatar-g.png`, 
+        `${BASE_URL}/assets/avatars/avatar-h.png`, 
+        `${BASE_URL}/assets/avatars/avatar-i.png`, 
+        `${BASE_URL}/assets/avatars/avatar-j.png`, 
+        `${BASE_URL}/assets/avatars/avatar-k.png`, 
+        `${BASE_URL}/assets/avatars/avatar-l.png`, 
+        `${BASE_URL}/assets/avatars/avatar-m.png`, 
+        `${BASE_URL}/assets/avatars/avatar-n.png`, 
+        `${BASE_URL}/assets/avatars/avatar-o.png`
     ];
 
     // Carga el avatar guardado del usuario o el primero por defecto.
+    // Si no hay avatar guardado, usa el primero de la lista.
     let selectedAvatarUrl = localStorage.getItem('userAvatar') || avatarImages[0];
 
     /**
@@ -49,10 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function generateStarsHtml(numStars) {
         let starsHtml = '';
         for (let i = 0; i < numStars; i++) {
-            starsHtml += '&#9733;'; // Estrella llena.
+            starsHtml += '<span class="star">&#9733;</span>'; // Estrella llena.
         }
         for (let i = numStars; i < 5; i++) { // Asumiendo un máximo de 5 estrellas.
-            starsHtml += '&#9734;'; // Estrella vacía.
+            starsHtml += '<span class="star empty">&#9734;</span>'; // Estrella vacía.
         }
         return starsHtml;
     }
@@ -130,9 +141,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const isLiked = likedCommentsSet.has(comment.id);
             const likedClass = isLiked ? 'liked' : '';
 
+            // Usa BASE_URL para la imagen del avatar, y un fallback si no se carga.
             commentCard.innerHTML = `
                 <div class="comment-avatar">
-                    <img src="${escapeHtml(comment.avatar)}" alt="Avatar de ${escapeHtml(comment.author)}" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/ffffff?text=User';">
+                    <img src="${escapeHtml(comment.avatar)}" alt="Avatar de ${escapeHtml(comment.author)}" onerror="this.onerror=null;this.src='${BASE_URL}/assets/avatars/default-user.png';">
                 </div>
                 <div class="comment-content">
                     <p class="comment-author">${escapeHtml(comment.author)}</p>
@@ -252,7 +264,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Marca el avatar seleccionado al cargar la página.
         selectableAvatars.forEach(avatar => {
-            if (avatar.src === selectedAvatarUrl) {
+            // Asegura que la URL base del avatar sea correcta para la comparación.
+            const avatarSrcWithoutBase = avatar.src.replace(BASE_URL, '');
+            const selectedAvatarUrlWithoutBase = selectedAvatarUrl.replace(BASE_URL, '');
+
+            if (avatarSrcWithoutBase === selectedAvatarUrlWithoutBase) {
                 avatar.classList.add('selected');
             } else {
                 avatar.classList.remove('selected');
@@ -264,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
             avatar.addEventListener('click', function() {
                 selectableAvatars.forEach(av => av.classList.remove('selected'));
                 this.classList.add('selected');
-                selectedAvatarUrl = this.src;
+                selectedAvatarUrl = this.src; // Guarda la URL completa del avatar.
                 localStorage.setItem('userAvatar', selectedAvatarUrl);
                 if (privacyDialog) {
                     privacyDialog.classList.add('show');
@@ -308,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         author: name,
                         text: text,
                         likes: 0,
-                        avatar: selectedAvatarUrl
+                        avatar: selectedAvatarUrl // Usa la URL completa del avatar seleccionado
                     };
                     allComments.push(newComment);
                     saveComments();
@@ -391,7 +407,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // asumiendo que el HTML del certificado ya tiene el valor de estrellas definido.
         // Esto es crucial para que este script funcione de forma independiente en la página generada.
         const companyDetails = document.querySelector('.company-details');
-        const starCount = companyDetails ? parseInt(companyDetails.dataset.starCount) : 0; // Se asume un 'data-star-count' en el HTML.
+        // Asegúrate de que 'companyDetails' no sea null antes de intentar acceder a 'dataset'.
+        const starCount = companyDetails ? parseInt(companyDetails.dataset.starCount) : 0; 
         const initialPercentage = (starCount / 5) * 100;
 
         if (trustMarker) {
@@ -430,16 +447,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // === Inicialización al cargar el DOM ===
-    // Asegura que las funciones se llamen solo si los elementos necesarios están presentes.
-    document.addEventListener('DOMContentLoaded', () => {
-        const simulatedCommentsContainer = document.getElementById('simulated-comments');
-        if (simulatedCommentsContainer) {
-            renderComments(3, simulatedCommentsContainer);
-        }
-        simulateComments();
-        setupTrustBarInteractivity();
+    // Ya que el script se carga con defer o al final del body, DOMContentLoaded ya se habrá disparado
+    // o se disparará una vez que este script se evalúe.
+    const simulatedCommentsContainer = document.getElementById('simulated-comments');
+    if (simulatedCommentsContainer) {
+        renderComments(3, simulatedCommentsContainer);
+    }
+    simulateComments();
+    setupTrustBarInteractivity();
 
-        // Configura la adición automática de comentarios cada 5 minutos.
-        setInterval(addRandomCommentAutomatically, 300000); // 5 minutos.
-    });
+    // Configura la adición automática de comentarios cada 5 minutos.
+    setInterval(addRandomCommentAutomatically, 300000); // 5 minutos.
 });

@@ -2,9 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("generate.js: DOM completamente cargado. Inicializando lógica de generación de certificados.");
 
     // Define una URL base para los assets dentro del certificado generado.
-    // Esto usará 'http://localhost:XXXX' si estás en un servidor local, o 'file:///' si abres el archivo directamente.
-    // Para despliegue real, asegúrate de que tus assets sean accesibles desde esta URL base.
-    const BASE_URL = window.location.origin; 
+    // Esto es crucial para que las rutas relativas (CSS, imágenes, scripts) funcionen correctamente
+    // tanto si el proyecto está alojado en un servidor local (como localhost) como si lo subes a GitHub Pages
+    // (donde la URL incluirá el nombre del repositorio).
+    // IMPORTANTE: Cambia '/ConfiAbleEmpress' por el nombre exacto de tu repositorio de GitHub si es diferente.
+    const REPO_NAME = '/ConfiAbleEmpress'; 
+    const BASE_URL = window.location.origin + (window.location.pathname.includes(REPO_NAME) ? REPO_NAME : '');
+
     console.log("generate.js: BASE_URL detectada:", BASE_URL);
 
     // === Referencias a elementos del DOM ===
@@ -36,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let optionText = '';
         let validityMonths = 0;
 
+        // Determine star count, option text, and validity based on selected option
         switch (option) {
             case 'A':
                 starCount = 3;
@@ -57,10 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
         }
 
+        // Calculate registration and expiration dates
         const regDate = new Date(registrationDate);
         const expirationDate = new Date(regDate);
         expirationDate.setMonth(expirationDate.getMonth() + validityMonths);
-        // Ajuste para evitar que el día se desborde al mes siguiente
+        // Adjust for month-end issues (e.g., Jan 31 + 1 month = Feb 28/29, not Mar 3)
         if (expirationDate.getDate() !== regDate.getDate()) {
             expirationDate.setDate(0); 
         }
@@ -68,32 +74,33 @@ document.addEventListener('DOMContentLoaded', () => {
         const formattedRegDate = regDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
         const formattedExpDate = expirationDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 
+        // Generate a URL-friendly slug for the company name
         const validationPageSlug = escapeHtml(companyName.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''));
+        
+        // Generate QR code
         const qr = qrcode(0, 'L');
-        const validationUrl = `${BASE_URL}/certificados/${validationPageSlug}.html`; // URL de ejemplo para el QR
+        // The validation URL points to the generated HTML page for this certificate
+        const validationUrl = `${BASE_URL}/certificados/${validationPageSlug}.html`; 
         qr.addData(validationUrl);
         qr.make();
-        const qrCodeDataURL = qr.createDataURL(6); // Escala 6, devuelve como Data URL
+        const qrCodeDataURL = qr.createDataURL(6); // Scale 6, returns as Data URL
 
-        // NOTA: Para las rutas de los assets, usamos ${BASE_URL} para que funcionen tanto localmente (con un servidor) como en despliegue.
-        // Asegúrate de que los archivos 'estiloglobales.css', 'certificate-styles.css', 'logo.png', 'firma-placeholder.png', 'sello-placeholder.png', 'certificate-logic.js'
-        // estén en sus respectivas carpetas 'assets/' o 'js/' y sean accesibles desde la BASE_URL.
-
+        // Construct the full HTML for the certificate page
+        // All asset paths now use BASE_URL for correct loading in all environments.
         return `<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Validación de ${escapeHtml(companyName)} - ConfiAbleEmpress</title>
-  <!-- Enlace a la hoja de estilos principal (globales) -->
+  <!-- Link to global styles -->
   <link rel="stylesheet" href="${BASE_URL}/assets/estiloglobales.css">
-  <!-- Enlace a la hoja de estilos específica para certificados -->
+  <!-- Link to certificate-specific styles -->
   <link rel="stylesheet" href="${BASE_URL}/assets/certificate-styles.css">
-  <!-- Icono de la página (favicon) -->
+  <!-- Page favicon -->
   <link rel="icon" href="${BASE_URL}/assets/logo.png" type="image/png">
-  <!-- Enlace a Font Awesome para iconos -->
+  <!-- Link to Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- La Política de Seguridad de Contenido (CSP) se ha eliminado de aquí para simplificar y alinear con la generación de HTML. -->
 </head>
 <body>
     <header>
@@ -174,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h3>Comentarios de Clientes</h3>
                         <p class="explanation">Se muestran los 3 comentarios más destacados.</p>
                         <div id="simulated-comments">
-                            <!-- Comentarios se cargarán aquí dinámicamente desde certificate-logic.js -->
+                            <!-- Comments will be loaded here dynamically from certificate-logic.js -->
                         </div>
                         <button id="viewAllCommentsBtn" class="dialog-close-btn" style="margin-top: 15px;">Ver Todos los Comentarios</button>
 
@@ -187,11 +194,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <input type="text" id="fakeCommentName" placeholder="Tu Nombre" required>
                             </div>
                             <div class="avatar-selection-container">
-                                <img src="https://placehold.co/50x50/FF6347/FFFFFF?text=A" class="selectable-avatar selected" data-avatar-id="0" alt="Avatar 1">
-                                <img src="https://placehold.co/50x50/4682B4/FFFFFF?text=B" class="selectable-avatar" data-avatar-id="1" alt="Avatar 2">
-                                <img src="https://placehold.co/50x50/32CD32/FFFFFF?text=C" class="selectable-avatar" data-avatar-id="2" alt="Avatar 3">
-                                <img src="https://placehold.co/50x50/DA70D6/FFFFFF?text=D" class="selectable-avatar" data-avatar-id="3" alt="Avatar 4">
-                                <img src="https://placehold.co/50x50/FFD700/000000?text=E" class="selectable-avatar" data-avatar-id="4" alt="Avatar 5">
+                                <!-- Avatar images should be replaced with local paths in certificate-logic.js as well -->
+                                <img src="${BASE_URL}/assets/avatars/avatar-a.png" class="selectable-avatar selected" data-avatar-id="0" alt="Avatar 1">
+                                <img src="${BASE_URL}/assets/avatars/avatar-b.png" class="selectable-avatar" data-avatar-id="1" alt="Avatar 2">
+                                <img src="${BASE_URL}/assets/avatars/avatar-c.png" class="selectable-avatar" data-avatar-id="2" alt="Avatar 3">
+                                <img src="${BASE_URL}/assets/avatars/avatar-d.png" class="selectable-avatar" data-avatar-id="3" alt="Avatar 4">
+                                <img src="${BASE_URL}/assets/avatars/avatar-e.png" class="selectable-avatar" data-avatar-id="4" alt="Avatar 5">
                             </div>
                             <textarea id="fakeCommentText" placeholder="Escribe tu comentario aquí"></textarea>
                             <button id="submitFakeComment">Enviar Comentario</button>
@@ -218,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </section>
     </main>
 
-    <!-- Diálogo de privacidad para la imagen de perfil -->
+    <!-- Privacy dialog for profile image -->
     <div id="privacyDialog" class="dialog-overlay">
         <div class="dialog-content">
             <h4>Privacidad de la Imagen de Perfil</h4>
@@ -227,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 
-    <!-- Diálogo para pedir el nombre antes de dar like -->
+    <!-- Dialog to ask for name before liking -->
     <div id="nameRequiredDialog" class="dialog-overlay">
         <div class="dialog-content">
             <h4>¡Atención!</h4>
@@ -236,32 +244,32 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 
-    <!-- Modal para ver todos los comentarios -->
+    <!-- Modal to view all comments -->
     <div id="allCommentsModal" class="dialog-overlay">
         <div class="dialog-content">
             <h4>Todos los Comentarios de Clientes</h4>
             <div id="modal-comments-container">
-                <!-- Comentarios se cargarán aquí -->
+                <!-- Comments will be loaded here -->
             </div>
             <button class="dialog-close-btn" id="closeAllCommentsModal">Cerrar</button>
         </div>
     </div>
 
-    <!-- Script JavaScript específico para certificados (debe estar en el mismo lugar que el certificate-logic.js) -->
+    <!-- Certificate-specific JavaScript (should be in the same location as certificate-logic.js) -->
     <script src="${BASE_URL}/js/certificate-logic.js"></script>
 </body>
 </html>
 `;
     }
 
-    // === Funciones de Utilidad para la Interfaz de Usuario ===
+    // === Utility Functions for User Interface ===
     function showMessage(message, type) {
         messageText.textContent = message;
         messageBox.className = `message-box ${type}`;
         messageBox.style.display = 'flex';
     }
 
-    // === Manejo del Envío del Formulario ===
+    // === Handle Form Submission ===
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
         console.log("generate.js: Formulario enviado. Iniciando generación.");
@@ -296,62 +304,63 @@ document.addEventListener('DOMContentLoaded', () => {
             downloadHtmlLink.href = htmlUrl;
             downloadHtmlLink.download = `certificado_${validationPageSlug}.html`;
 
-            // Para la generación de PDF, se necesita renderizar el HTML en el DOM temporalmente.
+            // For PDF generation, the HTML needs to be rendered in the DOM temporarily.
             const tempDiv = document.createElement('div');
             tempDiv.style.position = 'absolute';
-            tempDiv.style.left = '-9999px';
-            tempDiv.style.width = '1200px'; // Un ancho generoso para la captura.
-            tempDiv.style.height = 'auto'; // Altura automática
+            tempDiv.style.left = '-9999px'; // Position off-screen
+            tempDiv.style.width = '1200px'; // A generous width for capture.
+            tempDiv.style.height = 'auto'; // Automatic height
             tempDiv.innerHTML = certificateHtml;
             document.body.appendChild(tempDiv);
             console.log("generate.js: Elemento temporal añadido al DOM para html2canvas.");
 
-            // Espera a que los enlaces de estilos y scripts dentro de tempDiv se carguen
+            // Wait for styles and scripts within tempDiv to load
             console.log("generate.js: Esperando la carga de CSS y JS en el elemento temporal...");
             const linkPromises = Array.from(tempDiv.querySelectorAll('link[rel="stylesheet"]'))
                 .map(link => new Promise(resolve => {
                     link.onload = resolve;
                     link.onerror = (e) => {
                         console.error(`Error al cargar CSS: ${link.href}`, e);
-                        resolve(); // Resolver para no bloquear si hay un error
+                        resolve(); // Resolve to avoid blocking if there's an error
                     };
                 }));
             const scriptPromises = Array.from(tempDiv.querySelectorAll('script'))
                 .map(script => new Promise(resolve => {
-                    if (!script.src) {
+                    if (!script.src) { // Skip inline scripts
                         resolve();
                         return;
                     }
                     script.onload = resolve;
                     script.onerror = (e) => {
                         console.error(`Error al cargar JS: ${script.src}`, e);
-                        resolve(); // Resolver para no bloquear si hay un error
+                        resolve(); // Resolve to avoid blocking if there's an error
                     };
                 }));
 
-            // Espera por todas las cargas (CSS y JS) y un pequeño tiempo adicional.
+            // Wait for all loads (CSS and JS) and a small additional time for rendering.
             await Promise.all([...linkPromises, ...scriptPromises]);
-            await new Promise(resolve => setTimeout(resolve, 1000)); // Espera un poco más para asegurar el renderizado
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Wait a bit longer to ensure rendering
             console.log("generate.js: CSS y JS del certificado cargados y renderizado inicial esperado.");
 
-            // Utiliza html2canvas para capturar el contenido del div temporal como una imagen.
+            // Use html2canvas to capture the content of the temporary div as an image.
             console.log("generate.js: Iniciando captura con html2canvas...");
             const canvas = await html2canvas(tempDiv, {
-                scale: 2,
-                useCORS: true,
-                allowTaint: true,
-                ignoreElements: (element) => {
+                scale: 2, // Increase scale for better quality PDF
+                useCORS: true, // Enable CORS support for images
+                allowTaint: true, // Allow tainting the canvas if images are from different origins (use with caution)
+                ignoreElements: (element) => { // Ignore modal elements to avoid capturing them in the PDF
                     return (element.id === 'privacyDialog' || element.id === 'nameRequiredDialog' || element.id === 'allCommentsModal');
                 }
             });
             console.log("generate.js: html2canvas completado. Canvas generado.");
 
             const imgData = canvas.toDataURL('image/png');
-            const imgWidth = 210; // Ancho A4 en mm.
-            const pageHeight = 297; // Alto A4 en mm.
+            const imgWidth = 210; // A4 width in mm.
+            const pageHeight = 297; // A4 height in mm.
             const imgHeight = canvas.height * imgWidth / canvas.width;
             let heightLeft = imgHeight;
 
+            // Initialize jsPDF
             const { jsPDF } = window.jspdf;
             const pdf = new jsPDF('p', 'mm', 'a4');
             let position = 0;
@@ -359,6 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
             heightLeft -= pageHeight;
 
+            // Add new pages if content overflows
             while (heightLeft >= 0) {
                 position = heightLeft - imgHeight;
                 pdf.addPage();
@@ -366,13 +376,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 heightLeft -= pageHeight;
             }
 
+            // Update PDF download link
             downloadPdfLink.href = pdf.output('datauristring');
             downloadPdfLink.download = `certificado_${validationPageSlug}.pdf`;
             console.log("generate.js: PDF generado y enlace de descarga actualizado.");
 
+            // Remove the temporary div from the DOM
             document.body.removeChild(tempDiv);
             console.log("generate.js: Elemento temporal eliminado del DOM.");
 
+            // Show success message and reveal generated content links
             showMessage('Certificado generado con éxito. Puedes descargarlo o verlo.', 'success');
             generatedContent.style.display = 'block';
             console.log("generate.js: Proceso de generación finalizado con éxito.");
@@ -380,11 +393,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('generate.js: Error crítico al generar el certificado:', error);
             showMessage('Ocurrió un error inesperado al generar el certificado. Consulta la consola para más detalles.', 'error');
-            // Asegura que el elemento temporal sea eliminado si existe y se produce un error.
+            // Ensure the temporary element is removed if it exists and an error occurs.
             if (document.body.contains(tempDiv)) {
                 document.body.removeChild(tempDiv);
             }
         } finally {
+            // Hide loading indicator regardless of success or failure
             loadingIndicator.style.display = 'none';
             console.log("generate.js: Indicador de carga oculto.");
         }
